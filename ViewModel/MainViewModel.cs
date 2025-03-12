@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MyApp.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ScannerManager.ViewModel;
 
-public partial class MainViewModel(JSONServices MyJSONService) : BaseViewModel
+public partial class MainViewModel(JSONServices MyJSONService, CSVServices MyCSVService) : BaseViewModel
 {
     public ObservableCollection<StrangeAnimal> MyObservableList { get; } = [];
 
@@ -50,11 +51,33 @@ public partial class MainViewModel(JSONServices MyJSONService) : BaseViewModel
 
         IsBusy = false;
     }
-    
 
-    internal void RefreshPage()
+    [RelayCommand]
+    internal async Task PrintCSV()
+    {
+        IsBusy = true;
+
+        await MyCSVService.PrintData(Globals.MyStrangeAnimals);
+
+        IsBusy = false;
+    }
+    [RelayCommand]
+    internal async Task LoadCSV()
+    {
+        IsBusy = true;
+
+        Globals.MyStrangeAnimals = await MyCSVService.LoadData();
+        await RefreshPage();
+
+        IsBusy = false;
+    }
+
+    internal async Task RefreshPage()
     {
         MyObservableList.Clear ();
+
+        if (Globals.MyStrangeAnimals.Count == 0) Globals.MyStrangeAnimals = await MyJSONService.GetStrangeAnimals();
+
 
         foreach (var item in Globals.MyStrangeAnimals)
         {

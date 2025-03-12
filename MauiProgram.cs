@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using MyApp.Service;
 using System.Xml;
 
 namespace ScannerManager
@@ -33,6 +34,7 @@ namespace ScannerManager
 
             builder.Services.AddSingleton<DeviceOrientationService>();
             builder.Services.AddSingleton<JSONServices>();
+            builder.Services.AddSingleton<CSVServices>();
 
             return builder.Build();
         }

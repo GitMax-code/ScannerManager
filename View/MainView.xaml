@@ -23,6 +23,21 @@
                     Command="{Binding AddElementCommand}"
                     IsEnabled="{Binding IsNotBusy}"/>
 
+            <Button WidthRequest="150"
+                    Text="Go to details"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToDetailsCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+
+            <Button WidthRequest="150"
+                    Text="Print to CSV"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=PrintCSV}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+
+            <Button WidthRequest="150"
+                    Text="Load from CSV"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=LoadCSV}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+
             <CollectionView ItemsSource="{Binding MyObservableList}"
              SelectionMode="None">
                 <CollectionView.ItemsLayout>

@@ -16,8 +16,6 @@ public class JSONServices
         //string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MyAnimals.json");
         string filePath = Path.Combine("C:\\Users\\maxim\\helb\\DotNetIII\\ScannerManager\\Resources", "JSONFiles", "MyAnimals.json");
 
-
-
         try
         {
             using var stream = File.Open(filePath, FileMode.Open);
@@ -37,7 +35,6 @@ public class JSONServices
     internal async Task SetStrangeAnimals()
     {
         //string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MyAnimals.json");
-        //string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "JSONFiles", "MyAnimals.json");
         string filePath = Path.Combine("C:\\Users\\maxim\\helb\\DotNetIII\\ScannerManager\\Resources", "JSONFiles", "MyAnimals.json");
 
         try
