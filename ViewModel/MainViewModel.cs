@@ -26,6 +26,17 @@ public partial class MainViewModel(JSONServices MyJSONService, CSVServices MyCSV
 
         IsBusy = false;
     }
+
+    [RelayCommand]
+    internal async Task GoToAdd()
+    {
+        IsBusy = true;
+
+        await Shell.Current.GoToAsync("///AddAnimalView");
+
+        IsBusy = false;
+    }
+
     [RelayCommand]
     internal async Task SaveJSON()
     {

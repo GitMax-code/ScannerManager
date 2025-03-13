@@ -22,11 +22,14 @@ namespace ScannerManager.ViewModel
         public AddAnimalViewModel(JSONServices jsonServices)
         {
             _jsonServices = jsonServices;
+
+            Globals.MyStrangeAnimals = Globals.MyStrangeAnimals ?? new List<StrangeAnimal>();
         }
 
         [RelayCommand]
         private async Task AddAnimal()
         {
+  
             IsBusy = true;
 
             var newAnimal = new StrangeAnimal
