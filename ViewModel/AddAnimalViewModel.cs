@@ -1,8 +1,6 @@
-﻿
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
-
 
 namespace ScannerManager.ViewModel
 {
@@ -19,6 +17,8 @@ namespace ScannerManager.ViewModel
         [ObservableProperty]
         private string picture;
 
+        public event EventHandler AnimalAdded;
+
         public AddAnimalViewModel(JSONServices jsonServices)
         {
             _jsonServices = jsonServices;
@@ -29,7 +29,6 @@ namespace ScannerManager.ViewModel
         [RelayCommand]
         private async Task AddAnimal()
         {
-  
             IsBusy = true;
 
             var newAnimal = new StrangeAnimal
@@ -46,7 +45,7 @@ namespace ScannerManager.ViewModel
             IsBusy = false;
 
             // Navigate back to the main page
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("//MainView");
         }
     }
 }
