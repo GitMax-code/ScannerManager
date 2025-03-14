@@ -6,48 +6,67 @@
              x:Class="ScannerManager.View.DetailsView"             
              x:DataType="viewmodel:DetailsViewModel"
              Title="DetailsView">
-    
-    <VerticalStackLayout>
-        <Grid ColumnDefinitions="0.1*,0.3*,*" RowDefinitions="*,*,*,*,*" Padding="20" RowSpacing="20">
-            <Label  Grid.Column="0" Grid.Row="0" Text="Id:" VerticalOptions="Center"/>
-            <Entry  Grid.Column="1" Grid.Row="0"  
-                    Text="{Binding Id}"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="300"/>
-            <Label  Grid.Column="0" Grid.Row="1" Text="Nom:" VerticalOptions="Center"/>
-            <Entry  Grid.Column="1" Grid.Row="1"
-                    Text="{Binding Name}"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="300" />
-            <Label  Grid.Column="0" Grid.Row="2" Text="Description:" VerticalOptions="Center"/>
-            <Entry  Grid.Column="1" Grid.Row="2"
-                    Text="{Binding Description}"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="300" />
-            <Label  Grid.Column="0" Grid.Row="3" Text="Image:" VerticalOptions="Center"/>
-            <Entry  Grid.Column="1" Grid.Row="3" 
-                    Text="{Binding Picture}"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="300" />
-            <Button x:Name="MyAnimatedButton"
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    WidthRequest="100" 
-                    HorizontalOptions="Center"
-                    Text="Valider"
-                    Command="{Binding ChangeObjectParametersCommand}"
-                    Clicked="MyAnimatedButton_Clicked"
-                    IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BaseViewModel}}, Path= IsNotBusy}"/>
-            
-        </Grid>
-        <HorizontalStackLayout Spacing="20">
-            <Label Text="Serial Data: "></Label>
-            <Label Text="{Binding SerialBufferContent}" TextColor="Red"></Label>
-        </HorizontalStackLayout>
 
-    </VerticalStackLayout>
+    <Grid Padding="20" RowSpacing="20">
+        <!-- Ajouter une ligne et une colonne pour le bouton Delete -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Bouton pour supprimer l'animal en haut à gauche au milieu de la page -->
+        <Button Grid.Row="0"
+                Grid.Column="0"
+                HorizontalOptions="Center"
+                Text="Delete"
+                Command="{Binding DeleteAnimalCommand}"
+                Margin="0,0,0,0" />
+
+        <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid ColumnDefinitions="0.1*,0.3*,*" RowDefinitions="*,*,*,*,*" RowSpacing="20">
+                <Label  Grid.Column="0" Grid.Row="0" Text="Id:" VerticalOptions="Center"/>
+                <Entry  Grid.Column="1" Grid.Row="0"  
+                        Text="{Binding Id}"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" 
+                        WidthRequest="300"/>
+                <Label  Grid.Column="0" Grid.Row="1" Text="Nom:" VerticalOptions="Center"/>
+                <Entry  Grid.Column="1" Grid.Row="1"
+                        Text="{Binding Name}"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" 
+                        WidthRequest="300" />
+                <Label  Grid.Column="0" Grid.Row="2" Text="Description:" VerticalOptions="Center"/>
+                <Entry  Grid.Column="1" Grid.Row="2"
+                        Text="{Binding Description}"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" 
+                        WidthRequest="300" />
+                <Label  Grid.Column="0" Grid.Row="3" Text="Image:" VerticalOptions="Center"/>
+                <Entry  Grid.Column="1" Grid.Row="3" 
+                        Text="{Binding Picture}"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" 
+                        WidthRequest="300" />
+                <Button x:Name="MyAnimatedButton"
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        WidthRequest="100" 
+                        HorizontalOptions="Center"
+                        Text="Valider"
+                        Command="{Binding ChangeObjectParametersCommand}"
+                        Clicked="MyAnimatedButton_Clicked"
+                        IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BaseViewModel}}, Path= IsNotBusy}"/>
+            </Grid>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Serial Data: "></Label>
+                <Label Text="{Binding SerialBufferContent}" TextColor="Red"></Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
+

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,5 +79,25 @@ public partial class DetailsViewModel: ObservableObject
 
         // Naviguer vers la page d'accueil
         await Shell.Current.GoToAsync("//MainView");
-    }    
+    }
+
+    [RelayCommand]
+    private async Task DeleteAnimal()
+    {
+        // Trouver l'animal correspondant à l'ID
+        var animalToDelete = Globals.MyStrangeAnimals.FirstOrDefault(item => item.Id == Id);
+        if (animalToDelete == null)
+            return;
+
+ 
+        // Supprimer l'animal de la liste
+        Globals.MyStrangeAnimals.Remove(animalToDelete);
+
+        // Sauvegarder les modifications dans le fichier JSON
+        await MyJSONService.SetStrangeAnimals();
+
+
+        // Naviguer vers la page d'accueil
+        await Shell.Current.GoToAsync("//MainView");
+    }
 }

@@ -32,7 +32,8 @@ public partial class MainViewModel(JSONServices MyJSONService, CSVServices MyCSV
     {
         IsBusy = true;
 
-        await Shell.Current.GoToAsync("///AddAnimalView");
+        // Utiliser une navigation relative pour ajouter la page à la pile de navigation
+        await Shell.Current.GoToAsync("AddAnimalView");
 
         IsBusy = false;
     }

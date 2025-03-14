@@ -6,6 +6,7 @@
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(DetailsView), typeof(DetailsView));
+            Routing.RegisterRoute(nameof(AddAnimalView), typeof(AddAnimalView));
             Routing.RegisterRoute(nameof(MainView), typeof(MainView)); // Updated to MainView
         }
     }
