@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
+using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
-using MyApp.Service;
+//using ScannerManager.Service;
 using System.Xml;
 
 namespace ScannerManager
@@ -13,6 +14,7 @@ namespace ScannerManager
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseMicrocharts()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -31,6 +33,9 @@ namespace ScannerManager
 
             builder.Services.AddTransient<AddAnimalView>();
             builder.Services.AddTransient<AddAnimalViewModel>();
+
+            builder.Services.AddTransient<GraphView>();
+            builder.Services.AddTransient<GraphViewModel>();
 
             builder.Services.AddSingleton<DeviceOrientationService>();
             builder.Services.AddSingleton<JSONServices>();

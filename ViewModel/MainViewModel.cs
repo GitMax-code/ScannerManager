@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MyApp.Service;
+using ScannerManager.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -95,5 +95,15 @@ public partial class MainViewModel(JSONServices MyJSONService, CSVServices MyCSV
         {
             MyObservableList.Add(item);
         }
+    }
+
+    [RelayCommand]
+    internal async Task GoToGraph()
+    {
+        IsBusy = true;
+
+        await Shell.Current.GoToAsync("GraphView", true);
+       
+        IsBusy = false;
     }
 }

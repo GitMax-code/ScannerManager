@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyApp.Service
+namespace ScannerManager.Service
 {
     public class CSVServices
     {
         public async Task<List<StrangeAnimal>> LoadData()
         {
-            List<StrangeAnimal> myList = new List<StrangeAnimal>();
+            List<StrangeAnimal> list = [];
 
             var result = await FilePicker.PickAsync(new PickOptions
             {
-                PickerTitle = "Sélectionnez votre fichier csv",
+                PickerTitle = "Sélectionnez un fichier CSV"
             });
 
             if (result != null)
@@ -23,7 +23,6 @@ namespace MyApp.Service
                 var lines = await File.ReadAllLinesAsync(result.FullPath, Encoding.UTF8);
 
                 var headers = lines[0].Split(';');
-
                 var properties = typeof(StrangeAnimal).GetProperties();
 
                 for (int i = 1; i < lines.Length; i++)
@@ -42,33 +41,33 @@ namespace MyApp.Service
                             property.SetValue(obj, value);
                         }
                     }
-                    myList.Add(obj);
+
+                    list.Add(obj);
                 }
             }
+            return list;
+        } 
 
-            return myList;
-        }
-
-        public async Task PrintData<T>(List<T> myList)
+        public async Task PrintData<T>(List<T> data)
         {
             var csv = new StringBuilder();
             var properties = typeof(T).GetProperties();
-
             csv.AppendLine(string.Join(";", properties.Select(p => p.Name)));
 
-            foreach (var item in myList)
+            foreach (var item in data)
             {
                 var values = properties.Select(p => p.GetValue(item)?.ToString() ?? "");
                 csv.AppendLine(string.Join(";", values));
             }
-
             using var stream = new MemoryStream(Encoding.UTF8.GetBytes(csv.ToString()));
-
-            var fileSaverResult = await FileSaver.Default.SaveAsync("collection.csv", stream);
+            var fileSaverResult = await FileSaver.Default.SaveAsync("Collection.csv", stream);
 
             if (fileSaverResult.IsSuccessful)
             {
-                await Shell.Current.DisplayAlert("Fichier sauvegardé", "Le fichier a été sauvegardé avec succès", "OK");
+
+            }
+            else
+            {
             }
         }
     }

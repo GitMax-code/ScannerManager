@@ -72,6 +72,7 @@ public partial class DetailsViewModel: ObservableObject
                 item.Name = Name ?? string.Empty;
                 item.Description = Description ?? string.Empty;
                 item.Picture = Picture ?? string.Empty;
+                item.ModificationCount++;
             }
         }
         // Sauvegarder les modifications dans le fichier JSON

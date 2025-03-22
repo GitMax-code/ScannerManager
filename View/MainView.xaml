@@ -22,7 +22,7 @@
                             Grid.Column="0"
                             HorizontalOptions="Start"
                             HeightRequest="50"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=PrintToCSVCommand}"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=PrintCSVCommand}"
                             CommandParameter="0"
                             IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=IsNotBusy}">
                 </Button>
@@ -30,7 +30,15 @@
                             Grid.Column="0"
                             HorizontalOptions="Start"
                             HeightRequest="50"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=LoadFromCSVCommand}"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=LoadCSVCommand}"
+                            CommandParameter="0"
+                            IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=IsNotBusy}">
+                </Button>
+                <Button     Text="Graph"
+                            Grid.Column="0"
+                            HorizontalOptions="Start"
+                            HeightRequest="50"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToGraphCommand}"
                             CommandParameter="0"
                             IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=IsNotBusy}">
                 </Button>
@@ -71,6 +79,11 @@
                                     HorizontalOptions="Start"
                                     VerticalOptions="Center"/>
                                     <Label  Text="{Binding Path=Description,StringFormat='Description: {0:S10}'}"
+                                    Style="{StaticResource SubHeadline}"
+                                    FontSize="15"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                    <Label  Text="{Binding Path=ModificationCount,StringFormat='ModificationCount: {0:D3}'}"
                                     Style="{StaticResource SubHeadline}"
                                     FontSize="15"
                                     HorizontalOptions="Start"

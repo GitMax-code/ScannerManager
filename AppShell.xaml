@@ -5,16 +5,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ScannerManager.View"
     Shell.FlyoutBehavior="Disabled"
-    Title="MyApp">
+    Title="ScannerManager">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainView}"
         Route="MainView" />
-
+<!--
     <ShellContent
     Title="Add Animal"
     ContentTemplate="{DataTemplate local:AddAnimalView}"
     Route="AddAnimalView" />
 
+    <ShellContent
+    Title="Graph"
+    ContentTemplate="{DataTemplate local:GraphView}"
+    Route="GraphView" />
+-->
 </Shell>
