@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ScannerManager.Service
@@ -44,6 +45,15 @@ namespace ScannerManager.Service
 
                     list.Add(obj);
                 }
+                // Convert list to JSON
+                var json = JsonSerializer.Serialize(list, new JsonSerializerOptions { WriteIndented = true });
+
+                // Get the path to the desktop
+                var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                var jsonFilePath = Path.Combine(desktopPath, "MyAnimals.json");
+
+                // Write JSON to file
+                await File.WriteAllTextAsync(jsonFilePath, json, Encoding.UTF8);
             }
             return list;
         } 
