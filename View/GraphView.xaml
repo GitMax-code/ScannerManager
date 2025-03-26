@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="ScannerManager.View.GraphView"
-             Title="GraphView">
-    <Grid>
+             Title="Statistics"
+             BackgroundColor="#F8F9FA">
+
+    <Frame CornerRadius="10" BackgroundColor="White" Margin="20" Padding="10">
         <micro:ChartView Chart="{Binding MyObservableChart}"/>
-    </Grid>
+    </Frame>
 </ContentPage>

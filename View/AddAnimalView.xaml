@@ -4,11 +4,23 @@
              xmlns:viewmodel="clr-namespace:ScannerManager.ViewModel"
              x:Class="ScannerManager.View.AddAnimalView"
              x:DataType="viewmodel:AddAnimalViewModel"
-             Title="Add Animal">
-    <VerticalStackLayout Padding="20" Spacing="20">
-        <Entry Placeholder="Name" Text="{Binding Name}" />
-        <Entry Placeholder="Description" Text="{Binding Description}" />
-        <Entry Placeholder="Picture URL" Text="{Binding Picture}" />
-        <Button Text="Add Animal" Command="{Binding AddAnimalCommand}" />
-    </VerticalStackLayout>
+             Title="Add Animal"
+             BackgroundColor="#F8F9FA">
+
+    <Frame CornerRadius="10" BackgroundColor="White" Padding="20" Margin="20" HorizontalOptions="Fill" VerticalOptions="Start">
+        <VerticalStackLayout Spacing="15">
+            <Label Text="New Animal" FontSize="18" FontAttributes="Bold" TextColor="#512BD4"/>
+
+            <Entry Placeholder="Name" Text="{Binding Name}" BackgroundColor="White"/>
+            <Entry Placeholder="Description" Text="{Binding Description}" BackgroundColor="White"/>
+            <Entry Placeholder="Picture URL" Text="{Binding Picture}" BackgroundColor="White"/>
+
+            <Button Text="Add Animal" 
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="40"
+                    Command="{Binding AddAnimalCommand}"/>
+        </VerticalStackLayout>
+    </Frame>
 </ContentPage>
