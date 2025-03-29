@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
+    <!---
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+     // Add the toolkit namespace for mouse hover behavior
+    -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:ScannerManager.ViewModel"
-             xmlns:model="clr-namespace:ScannerManager.Model"             
+             xmlns:model="clr-namespace:ScannerManager.Model"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ScannerManager.View.MainView"
              x:DataType="viewmodel:MainViewModel"
              Title="Animal Manager"
@@ -92,7 +97,14 @@
                                             HeightRequest="100"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToDetailsCommand}"
                                             CommandParameter="{Binding Id}"
-                                            IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=IsNotBusy}"/>
+                                            IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=IsNotBusy}">
+                                    <!-- Ne marche pas 
+                                    <ImageButton.Behaviors>
+                                        <toolkit:MouseHoverBehavior CursorType="Hand" />
+                                    </ImageButton.Behaviors>
+                                    -->
+                                </ImageButton>
+
                                 <VerticalStackLayout Grid.Column="1" Spacing="5">
                                     <Label Text="{Binding Path=Id,StringFormat='ID: {0:S2}'}" FontSize="14" FontAttributes="Bold"/>
                                     <Label Text="{Binding Path=Name,StringFormat='Name: {0:S10}'}" FontSize="14"/>

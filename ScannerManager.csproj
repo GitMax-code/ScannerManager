@@ -68,6 +68,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		
 		<PackageReference Include="CommunityToolkit.Maui" Version="11.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microcharts.Maui" Version="1.0.0" />
@@ -98,6 +99,12 @@
 
 	<ItemGroup>
 	  <Folder Include="Resources\JSONFiles\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Resources\Images\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>

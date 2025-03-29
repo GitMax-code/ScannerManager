@@ -40,13 +40,19 @@
                     VerticalOptions="Center" 
                     HorizontalOptions="Center" 
                     WidthRequest="300" />
-            <Button x:Name="MyAnimatedButton"
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    WidthRequest="100" 
+            <Button x:Name="MySaveButton" Grid.Column="1" Grid.Row="4" WidthRequest="100" 
                     HorizontalOptions="Center"
                     Text="Valider"
                     Command="{Binding ChangeObjectParametersCommand}"
+                    Clicked="MyAnimatedButton_Clicked"
+                    IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BaseViewModel}}, Path= IsNotBusy}"/>
+            <Button x:Name="MyDeleteButton"
+                    Grid.Column="2"
+                    Grid.Row="4"
+                    WidthRequest="100" 
+                    HorizontalOptions="Center"
+                    Text="Supprimer"
+                    Command="{Binding DeleteAnimalCommand}"
                     Clicked="MyAnimatedButton_Clicked"
                     IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BaseViewModel}}, Path= IsNotBusy}"/>
 

@@ -21,17 +21,40 @@ public partial class DetailsViewModel: ObservableObject
     public partial string? Picture { get; set; }
     [ObservableProperty]
     public partial string? SerialBufferContent { get; set; }
+    [ObservableProperty]
+    public partial bool EmulatorON_OFF { get; set; } = false;
 
     readonly DeviceOrientationService MyScanner;
+
+    IDispatcherTimer emulator = Application.Current.Dispatcher.CreateTimer();
+
     readonly JSONServices MyJSONService;
 
     public DetailsViewModel(DeviceOrientationService myScanner, JSONServices myJSONService)
     {
         this.MyScanner = myScanner;
-        this.MyJSONService = myJSONService;
         MyScanner.OpenPort();
         myScanner.SerialBuffer.Changed += OnSerialDataReception;
+
+        emulator.Interval = TimeSpan.FromSeconds(1);
+        emulator.Tick += (s, e) => AddCode();
+
+        this.MyJSONService = myJSONService;
+
+
     }
+
+    partial void OnEmulatorON_OFFChanged(bool value)
+    {
+        if (value) emulator.Start();
+        else emulator.Stop();
+    }
+    private void AddCode()
+    {
+        MyScanner.SerialBuffer.Enqueue("B");
+    }
+
+
     private void OnSerialDataReception(object sender, EventArgs arg)
     {
         DeviceOrientationService.QueueBuffer MyLocalBuffer = (DeviceOrientationService.QueueBuffer)sender;
@@ -79,7 +102,7 @@ public partial class DetailsViewModel: ObservableObject
         await MyJSONService.SetStrangeAnimals(Globals.MyStrangeAnimals);
 
         // Naviguer vers la page d'accueil
-        await Shell.Current.GoToAsync("//MainView");
+        await Shell.Current.GoToAsync("MainView");
     }
 
     [RelayCommand]
@@ -99,6 +122,6 @@ public partial class DetailsViewModel: ObservableObject
 
 
         // Naviguer vers la page d'accueil
-        await Shell.Current.GoToAsync("//MainView");
+        await Shell.Current.GoToAsync("MainView");
     }
 }

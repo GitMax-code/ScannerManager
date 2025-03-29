@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+//Commenter àpres avoir vérifié
+//using System.Diagnostics;
+
 namespace ScannerManager.ViewModel
 {
     public partial class AddAnimalViewModel : BaseViewModel
@@ -54,25 +57,29 @@ namespace ScannerManager.ViewModel
         {
             IsBusy = true;
 
-            // Chemin du dossier des images
             string imagesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Images");
+            // Chemin du dossier des images
 
             // Vérifier si l'image existe dans le dossier
-            if (string.IsNullOrEmpty(Picture) || !File.Exists(Path.Combine(imagesPath, Picture)))
+            ///Debug.WriteLine("+++++++++++++++++++++++++++++++++++" );
+            //Debug.WriteLine("+++++++++++++++++++++++++++++++++++"+Path.Combine(imagesPath, picture));
+            //Debug.WriteLine("+++++++++++++++++++++++++++++++++++" );
+            
+            if (string.IsNullOrEmpty(picture) || !File.Exists(Path.Combine(imagesPath, picture)))
             {
-                Picture = "default.jpg";
+                picture = "default.jpg";
             }
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(Id))
             {
                 id = Guid.NewGuid().ToString();
             }
             var newAnimal = new StrangeAnimal
             {
                 Id = id,
-                Name = Name,
-                Description = Description,
-                Picture = Picture,
+                Name = name,
+                Description = description,
+                Picture = picture,
                 ModificationCount = 0
             };
 
@@ -82,7 +89,7 @@ namespace ScannerManager.ViewModel
             IsBusy = false;
 
             // Naviguer vers la page d'accueil
-            await Shell.Current.GoToAsync("//MainView");
+            await Shell.Current.GoToAsync("MainView");
         }
 
         public void Dispose()

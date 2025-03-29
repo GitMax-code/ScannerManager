@@ -13,7 +13,7 @@ namespace ScannerManager
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkit() //   Install-Package CommunityToolkit.Maui
                 .UseMicrocharts()
                 .ConfigureFonts(fonts =>
                 {

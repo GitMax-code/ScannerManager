@@ -28,7 +28,10 @@ public partial class DetailsView : ContentPage
 
     private async void MyAnimatedButton_Clicked(object sender, EventArgs e)
     {
-        await MyAnimatedButton.ScaleTo(1.1, 100);
-        await MyAnimatedButton.ScaleTo(1.0, 100);
+        if (sender is VisualElement visualElement) // Add this type check and cast
+        {
+            await visualElement.ScaleTo(1.1, 100);
+            await visualElement.ScaleTo(1.0, 100);
+        }
     }
 }
