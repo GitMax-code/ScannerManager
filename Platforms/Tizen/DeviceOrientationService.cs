@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyApp.Service;
+//namespace MyApp.Service;
+namespace ScannerManager.Service;
 
 public partial class DeviceOrientationService
 {

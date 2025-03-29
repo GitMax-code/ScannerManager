@@ -2,7 +2,8 @@ using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace MyApp
+//namespace MyApp
+namespace ScannerManager
 {
     internal class Program : MauiApplication
     {

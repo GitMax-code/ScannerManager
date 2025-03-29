@@ -76,7 +76,7 @@ public partial class DetailsViewModel: ObservableObject
             }
         }
         // Sauvegarder les modifications dans le fichier JSON
-        await MyJSONService.SetStrangeAnimals();
+        await MyJSONService.SetStrangeAnimals(Globals.MyStrangeAnimals);
 
         // Naviguer vers la page d'accueil
         await Shell.Current.GoToAsync("//MainView");
@@ -95,7 +95,7 @@ public partial class DetailsViewModel: ObservableObject
         Globals.MyStrangeAnimals.Remove(animalToDelete);
 
         // Sauvegarder les modifications dans le fichier JSON
-        await MyJSONService.SetStrangeAnimals();
+        await MyJSONService.SetStrangeAnimals(Globals.MyStrangeAnimals);
 
 
         // Naviguer vers la page d'accueil

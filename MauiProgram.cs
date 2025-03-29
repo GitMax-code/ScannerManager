@@ -24,6 +24,10 @@ namespace ScannerManager
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            
+            builder.Services.AddSingleton<HomeView>();
+            builder.Services.AddSingleton<HomeViewModel>();
+
 
             builder.Services.AddSingleton<MainView>();
             builder.Services.AddSingleton<MainViewModel>();

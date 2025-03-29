@@ -12,6 +12,9 @@ namespace ScannerManager.ViewModel
         private readonly DeviceOrientationService _scannerService;
 
         [ObservableProperty]
+        private string id;
+
+        [ObservableProperty]
         private string name;
 
         [ObservableProperty]
@@ -36,39 +39,37 @@ namespace ScannerManager.ViewModel
            _scannerService.SerialBuffer.Changed += OnSerialDataReception;
 
         }
-
         private void OnSerialDataReception(object sender, EventArgs e)
         {
-
-
-
-            // Récupérer les données du scanner
             var scannedData = _scannerService.SerialBuffer.Dequeue().ToString();
+ 
+            id = scannedData; // Stocker l'ID scanné
 
-            // Supposons que les données scannées sont au format "Nom;Description;URLImage"
-            var dataParts = scannedData.Split(';');
-
-            if (dataParts.Length >= 3)
-            {
-                Name = dataParts[0]; // Remplir le champ Nom
-                Description = dataParts[1]; // Remplir le champ Description
-                Picture = dataParts[2]; // Remplir le champ Image
-            }
+            
         }
+
 
         [RelayCommand]
         private async Task AddAnimal()
         {
             IsBusy = true;
 
-            if (string.IsNullOrEmpty(Picture))
+            // Chemin du dossier des images
+            string imagesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Images");
+
+            // Vérifier si l'image existe dans le dossier
+            if (string.IsNullOrEmpty(Picture) || !File.Exists(Path.Combine(imagesPath, Picture)))
             {
                 Picture = "default.jpg";
-            };
+            }
 
+            if (string.IsNullOrEmpty(id))
+            {
+                id = Guid.NewGuid().ToString();
+            }
             var newAnimal = new StrangeAnimal
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = id,
                 Name = Name,
                 Description = Description,
                 Picture = Picture,
@@ -76,7 +77,7 @@ namespace ScannerManager.ViewModel
             };
 
             Globals.MyStrangeAnimals.Add(newAnimal);
-            await _jsonServices.SetStrangeAnimals();
+            await _jsonServices.SetStrangeAnimals(Globals.MyStrangeAnimals);
 
             IsBusy = false;
 

@@ -5,58 +5,56 @@
              xmlns:model="clr-namespace:ScannerManager.Model" 
              x:Class="ScannerManager.View.DetailsView"             
              x:DataType="viewmodel:DetailsViewModel"
-             Title="Animal Details"
-             BackgroundColor="#F8F9FA">
+             Title="DetailsView">
 
-    <Grid Padding="20" RowSpacing="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <VerticalStackLayout>
+        <HorizontalStackLayout Padding="10" Spacing="10">
+            <Label Text="Emulator : " VerticalOptions="Center"/>
+            <Switch OnColor="{StaticResource Primary}"
+                    ThumbColor="{StaticResource Primary}" 
+                    IsToggled="{Binding EmulatorON_OFF}"
+                    VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+        <Grid ColumnDefinitions="0.1*,0.3*,*" RowDefinitions="*,*,*,*,*" Padding="20" RowSpacing="20">
+            <Label  Grid.Column="0" Grid.Row="0" Text="Id:" VerticalOptions="Center"/>
+            <Entry  Grid.Column="1" Grid.Row="0"  
+                    Text="{Binding Id}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    WidthRequest="300"/>
+            <Label  Grid.Column="0" Grid.Row="1" Text="Nom:" VerticalOptions="Center"/>
+            <Entry  Grid.Column="1" Grid.Row="1"
+                    Text="{Binding Name}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    WidthRequest="300" />
+            <Label  Grid.Column="0" Grid.Row="2" Text="Description:" VerticalOptions="Center"/>
+            <Entry  Grid.Column="1" Grid.Row="2"
+                    Text="{Binding Description}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    WidthRequest="300" />
+            <Label  Grid.Column="0" Grid.Row="3" Text="Image:" VerticalOptions="Center"/>
+            <Entry  Grid.Column="1" Grid.Row="3" 
+                    Text="{Binding Picture}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    WidthRequest="300" />
+            <Button x:Name="MyAnimatedButton"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    WidthRequest="100" 
+                    HorizontalOptions="Center"
+                    Text="Valider"
+                    Command="{Binding ChangeObjectParametersCommand}"
+                    Clicked="MyAnimatedButton_Clicked"
+                    IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BaseViewModel}}, Path= IsNotBusy}"/>
 
-        <Button Grid.Row="0"
-                Text="Delete"
-                BackgroundColor="#DC3545"
-                TextColor="White"
-                CornerRadius="8"
-                HeightRequest="40"
-                WidthRequest="100"
-                HorizontalOptions="Center"
-                Command="{Binding DeleteAnimalCommand}"/>
+        </Grid>
+        <HorizontalStackLayout Spacing="20">
+            <Label Text="Serial Data: "></Label>
+            <Label Text="{Binding SerialBufferContent}" TextColor="Red"></Label>
+        </HorizontalStackLayout>
 
-        <Frame Grid.Row="1" CornerRadius="10" BackgroundColor="White" Padding="15">
-            <VerticalStackLayout Spacing="10">
-                <Grid ColumnDefinitions="100,*" RowDefinitions="*,*,*,*,*" RowSpacing="10">
-                    <Label Grid.Column="0" Grid.Row="0" Text="ID:" VerticalOptions="Center"/>
-                    <Entry Grid.Column="1" Grid.Row="0" Text="{Binding Id}" IsEnabled="False" BackgroundColor="#F8F9FA"/>
-
-                    <Label Grid.Column="0" Grid.Row="1" Text="Name:" VerticalOptions="Center"/>
-                    <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Name}"/>
-
-                    <Label Grid.Column="0" Grid.Row="2" Text="Description:" VerticalOptions="Center"/>
-                    <Entry Grid.Column="1" Grid.Row="2" Text="{Binding Description}"/>
-
-                    <Label Grid.Column="0" Grid.Row="3" Text="Image URL:" VerticalOptions="Center"/>
-                    <Entry Grid.Column="1" Grid.Row="3" Text="{Binding Picture}"/>
-
-                    <Button x:Name="MyAnimatedButton"
-                            Grid.Column="1"
-                            Grid.Row="4"
-                            Text="Save"
-                            BackgroundColor="#512BD4"
-                            TextColor="White"
-                            CornerRadius="8"
-                            HeightRequest="40"
-                            HorizontalOptions="Start"
-                            Command="{Binding ChangeObjectParametersCommand}"
-                            Clicked="MyAnimatedButton_Clicked"/>
-                </Grid>
-
-                <HorizontalStackLayout Spacing="5" Margin="0,10,0,0">
-                    <Label Text="Serial Data:" FontAttributes="Bold"/>
-                    <Label Text="{Binding SerialBufferContent}" TextColor="#DC3545"/>
-                </HorizontalStackLayout>
-            </VerticalStackLayout>
-        </Frame>
-    </Grid>
+    </VerticalStackLayout>
 </ContentPage>

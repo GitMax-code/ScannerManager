@@ -49,6 +49,24 @@
                         CommandParameter="0"
                         IsEnabled="{Binding IsNotBusy}"/>
 
+                <Button Text="Save JSON"
+                        BackgroundColor="#DFD8F7"
+                        TextColor="#512BD4"
+                        CornerRadius="8"
+                        HeightRequest="40"
+                        Command="{Binding SaveJSONCommand}"
+                        CommandParameter="0"
+                        IsEnabled="{Binding IsNotBusy}"/>
+
+                <Button Text="Load JSON"
+                        BackgroundColor="#DFD8F7"
+                        TextColor="#512BD4"
+                        CornerRadius="8"
+                        HeightRequest="40"
+                        Command="{Binding LoadJSONCommand}"
+                        CommandParameter="0"
+                        IsEnabled="{Binding IsNotBusy}"/>
+
                 <Button Text="Graph"
                         BackgroundColor="#DFD8F7"
                         TextColor="#512BD4"

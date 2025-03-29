@@ -10,7 +10,7 @@
     <Frame CornerRadius="10" BackgroundColor="White" Padding="20" Margin="20" HorizontalOptions="Fill" VerticalOptions="Start">
         <VerticalStackLayout Spacing="15">
             <Label Text="New Animal" FontSize="18" FontAttributes="Bold" TextColor="#512BD4"/>
-
+            <Entry Placeholder="ID scanné" Text="{Binding Id}" BackgroundColor="White"/>
             <Entry Placeholder="Name" Text="{Binding Name}" BackgroundColor="White"/>
             <Entry Placeholder="Description" Text="{Binding Description}" BackgroundColor="White"/>
             <Entry Placeholder="Picture URL" Text="{Binding Picture}" BackgroundColor="White"/>

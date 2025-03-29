@@ -17,7 +17,7 @@ public partial class MainViewModel(JSONServices MyJSONService, CSVServices MyCSV
     [RelayCommand]
     internal async Task GoToDetails(string id)
     {
-        IsBusy = true;
+        IsBusy = true; 
 
         await Shell.Current.GoToAsync("DetailsView", true, new Dictionary<string,object>
         {
@@ -43,7 +43,7 @@ public partial class MainViewModel(JSONServices MyJSONService, CSVServices MyCSV
     {
         IsBusy = true;
 
-        await MyJSONService.SetStrangeAnimals();
+        await MyJSONService.SetStrangeAnimals(Globals.MyStrangeAnimals);
     
         IsBusy = false;
     }

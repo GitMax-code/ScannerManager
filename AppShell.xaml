@@ -7,11 +7,18 @@
     Shell.FlyoutBehavior="Disabled"
     Title="ScannerManager">
 
+
+    <ShellContent
+       Title="Home"
+       ContentTemplate="{DataTemplate local:HomeView}"
+       Route="HomeView" />
+
+    <!--
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainView}"
         Route="MainView" />
-<!--
+
     <ShellContent
     Title="Add Animal"
     ContentTemplate="{DataTemplate local:AddAnimalView}"
